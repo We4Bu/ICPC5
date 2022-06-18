@@ -3,20 +3,77 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>c5</title>
+    <title>c4</title>
     <base href="/" />
     <link rel="icon" href="favicon.ico" />
     <link type="text/css" rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <main>
-      <img src="logo.png" alt="DFINITY logo" />
-      <form action="#">
-        <label for="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting"></section>
-    </main>
+    <form> <h2 id="principal"> </h2> </form>
+    <form>
+      <label for="canister_id"> canister id </label>
+      <input type="text" id="canister_id" name="canister_id">
+    </form>
+    <form> 
+      <label for="make_wasm"> upload Wasm file for install code </label>
+      <input id="make_wasm" name="make_wasm" type="file" multiple="multiple">
+    </form>
+
+    <form> <h3> Operation on Canister </h3> </form>
+    <form> 
+      <button id="create"> Create </button>
+      <button id="start"> Start </button>
+      <button id="stop"> Stop </button>
+      <button id="delete"> Delete </button>
+      <button id="install"> Install </button>
+    </form>
+
+    <form> <h3> Make a proposal </h3> </form>
+    <form>
+      <label for="make_direct"> proposal direct </label>
+      <select name="make_direct" id="make_direct">
+        <option value="add">add</option>
+        <option value="remove">remove</option>
+      </select>
+    </form>
+   
+    <form>
+      <label for="make_type"> proposal type</label>
+      <select name="make_type" id="make_type">
+        <option value="start">start</option>
+        <option value="stop">stop</option>
+        <option value="delete">delete</option>
+        <option value="install_code"> install_code </option>
+      </select>
+    </form>
+    <form> <button id="make"> Make </button> </form>
+    
+    <form> <h3> Vote a proposal </h3> </form>
+    <form>
+      <label for="proposal_id"> canister id </label>
+      <input type="text" id="proposal_id" name="proposal_id">
+    </form>
+    <form>
+      <label for="approve"> approve </label>
+      <select name="approve" id="approve">
+        <option value=true> yes </option>
+        <option value=false> no </option>
+      </select>
+    </form>
+    <form> <button id="vote"> Vote </button> </form>
+    <hr />
+
+    <h3> Member list: </h3>
+    <section id="member"> </section>
+    <hr />
+
+    <h3> Canister list: </h3>
+    <section id="canister"> </section>
+    <hr />
+
+    <h3> Proposal list: </h3>
+    <section id="proposal"> </section>
+    <hr />
+
   </body>
 </html>

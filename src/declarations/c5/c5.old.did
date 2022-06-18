@@ -1,0 +1,50 @@
+type Wasm_module = vec nat8;
+type Proposal = 
+ record {
+   canister_id: principal;
+   operation_direct: OperationDirect;
+   operation_type: OperationType;
+   proposal_approve_num: nat;
+   proposal_approvers: vec principal;
+   proposal_completed: bool;
+   proposal_id: nat;
+   proposal_maker: principal;
+   proposal_refuse_num: nat;
+   proposal_refusers: vec principal;
+   wasm_module: opt Wasm_module;
+ };
+type OperationType = 
+ variant {
+   addMember;
+   delete;
+   install;
+   removeMember;
+   start;
+   stop;
+ };
+type OperationDirect = 
+ variant {
+   add;
+   remove;
+ };
+service : {
+  create_canister: () -> (opt principal);
+  delete_canister: (principal) -> ();
+  getCanister: () -> (vec record {
+                            principal;
+                            nat;
+                          });
+  getMember: () -> (vec principal);
+  getProposal: () -> (vec record {
+                            nat;
+                            Proposal;
+                          });
+  install_code: (principal, opt Wasm_module) -> ();
+  make_proposal: (OperationDirect, OperationType, principal,
+   opt Wasm_module) -> ();
+  make_proposal_member: (OperationDirect, principal) -> ();
+  make_proposal_warp: (text, text, principal, opt Wasm_module) -> ();
+  start_canister: (principal) -> ();
+  stop_canister: (principal) -> ();
+  vote_proposal: (nat, bool, bool) -> ();
+}
